@@ -16,7 +16,7 @@ jobs:
         run: cat /etc/*release*
   run-windows-commands:
     runs-on: windows-latest # Runs on windows virtual machine
-    needs: ["run-shell-command"] # This job will run after run-shell-command job
+    needs: ["run-shell-commands"] # This job will run after run-shell-command job
     steps:
       - name: powershell directory
         run: Get-Location
