@@ -12,3 +12,5 @@ jobs:
         run: |
           node -v
           npm -v
+      - name: linux version
+        run: cat /etc/*release*
