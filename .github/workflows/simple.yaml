@@ -6,15 +6,15 @@ jobs:
   run-shell-commands: # Job name
     runs-on: ubuntu-18.04 # Runs on linux virtual machine
     steps:
-      - name: echo a string
-        run: echo "Hello World"
+      - name: echo a string # Name of the action or step
+        run: echo "Hello World" # commands to run on virtual machine
       - name: multi line script
         run: |
           node -v
           npm -v
       - name: linux version
         run: cat /etc/*release*
-  run-windows-commands:
+  run-windows-commands: # Job name
     runs-on: windows-latest # Runs on windows virtual machine
     needs: ["run-shell-commands"] # This job will run after run-shell-command job
     steps:
@@ -22,4 +22,4 @@ jobs:
         run: Get-Location
       - name: bash location
         run: pwd
-        shell: bash
+        shell: bash # specifying shell type which needs to be used
