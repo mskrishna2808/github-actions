@@ -12,4 +12,4 @@ jobs:
         with:
           who-to-greet: sai
       - name: Time stamp
-        run: echo "${{ steps.id.output.time }}"
+        run: echo "${{ steps.greet.outputs.time }}"
