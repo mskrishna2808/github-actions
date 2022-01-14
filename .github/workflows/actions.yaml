@@ -17,6 +17,7 @@ jobs:
           cd .github/workflows
           ls -a
           cd ../..
+          ls -a
       - name: javascript action
         id: greet
         uses: actions/hello-world-javascript-action@v1
