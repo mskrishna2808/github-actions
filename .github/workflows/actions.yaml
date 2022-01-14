@@ -8,9 +8,8 @@ jobs:
     steps:
       - name: javascript action
         id: greet
-        uses: actions/hell-world-javascript-action@v1
+        uses: actions/hello-world-javascript-action@v1
         with:
           who-to-greet: sai
       - name: Time stamp
         run: echo "${{ steps.id.output.time }}"
-        
