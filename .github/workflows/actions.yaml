@@ -13,7 +13,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1 # This is step will read the contents of our repository
       - name: List files after checkout
-        run: ls -a 
+        run: |
+          cd .github/workflows
+          ls -a
+          cd ../..
       - name: javascript action
         id: greet
         uses: actions/hello-world-javascript-action@v1
