@@ -6,12 +6,12 @@ jobs:
   github-actions-workflow:
     runs-on: ubuntu-18.04
     steps:
-      - name: List files before checkout
+      - name: List files before checkout # By default git hub actions can not read the contents of repository
         run: |
           pwd
           ls -a
       - name: checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v1 # This is step will read the contents of our repository
       - name: List files after checkout
         run: ls -a 
       - name: javascript action
