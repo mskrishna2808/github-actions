@@ -39,7 +39,7 @@ jobs:
   removing-ip-from-aws:
     name: Removing IP address
     runs-on: ubuntu-latest
-    needs: ["Running-sonar-scanner"]
+    needs: ["adding-ip-to-aws-sg","Running-sonar-scanner"]
     if: always()
     steps:
       - name: view output
