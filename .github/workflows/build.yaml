@@ -41,8 +41,8 @@ jobs:
     steps:
       - name: Remove Github Actions IP from security group
         run: |
-          aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ steps.ip.outputs.ipv4 }}/32
-          aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol tcp --port 9000 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+          aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ needs.Adding-ip-to-aws-sg.steps.ip.outputs.ipv4 }}/32
+          aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol tcp --port 9000 --cidr ${{ needs.Adding-ip-to-aws-sg.steps.ip.outputs.ipv4 }}/32
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
