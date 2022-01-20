@@ -1,0 +1,11 @@
+name : Testing IP's
+
+on: [push]
+
+jobs:
+  testing-ip-address:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Getting IP of a linux machine
+        run: |
+          hostname -i
