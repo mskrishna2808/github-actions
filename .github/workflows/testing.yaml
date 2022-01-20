@@ -10,4 +10,7 @@ jobs:
         run: |
           hostname -i
           echo $(curl ident.me) > output.txt
-          cat output.txt    
+          cat output.txt
+      - name: Get Github action IP
+        id: ip
+        uses: haythem/public-ip@v1.2
