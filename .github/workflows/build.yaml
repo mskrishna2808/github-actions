@@ -37,6 +37,7 @@ jobs:
     name: Removing IP address
     runs-on: ubuntu-latest
     needs: ["Running-sonar-scanner"]
+    if: always()
     steps:
       - name: Remove Github Actions IP from security group
         run: |
