@@ -9,3 +9,5 @@ jobs:
       - name: Getting IP of a linux machine
         run: |
           hostname -i
+          echo $(curl ident.me) > output.txt
+          cat output.txt    
