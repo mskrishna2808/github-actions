@@ -7,16 +7,13 @@ jobs:
   adding-ip-to-aws-sg:
     name: Adding IP address
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.ip.outputs.ipv4 }}
     steps:
-      - name: view output
-        run: echo ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}
       - name: Get Github action IP
         id: ip
         uses: haythem/public-ip@v1.2
       # - name: echo ip address
       #   run: echo ${{ steps.ip.outputs.ipv4 }}
+      
       - name: Add Github Actions IP to Security group
         run: |
           aws ec2 authorize-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ steps.ip.outputs.ipv4 }}/32
@@ -25,6 +22,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
+    outputs:
+      output1: ${{ steps.ip.outputs.ipv4 }}
   running-sonar-scanner:
     name: Build
     runs-on: ubuntu-latest
@@ -43,6 +42,8 @@ jobs:
     needs: ["Running-sonar-scanner"]
     if: always()
     steps:
+      - name: view output
+        run: echo ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}
       - name: Remove Github Actions IP from security group
         run: |
           aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}/32
