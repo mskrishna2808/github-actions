@@ -7,10 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Getting IP of a linux machine
+        id: ip
         run: |
-          hostname -i
           echo $(curl ident.me) > output.txt
           cat output.txt
       - name: Get Github action IP
         id: ip
         uses: haythem/public-ip@v1.2
+      - name: View output using reference
+        run: echo ${{ steps.ip.outputs }}
