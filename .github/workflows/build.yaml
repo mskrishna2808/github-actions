@@ -8,17 +8,17 @@ jobs:
     name: Adding IP address
     runs-on: self-hosted
     steps:
-      - name: Get Github action IP
-        id: ip
-        uses: haythem/public-ip@v1.2
-      - name: Add Github Actions IP to Security group
-        run: |
-          aws ec2 authorize-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ steps.ip.outputs.ipv4 }}/32
-          aws ec2 authorize-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol tcp --port 9000 --cidr ${{ steps.ip.outputs.ipv4 }}/32    
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
+      # - name: Get Github action IP
+      #   id: ip
+      #   uses: haythem/public-ip@v1.2
+      # - name: Add Github Actions IP to Security group
+      #   run: |
+      #     aws ec2 authorize-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ steps.ip.outputs.ipv4 }}/32
+      #     aws ec2 authorize-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol tcp --port 9000 --cidr ${{ steps.ip.outputs.ipv4 }}/32    
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: us-east-1
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
@@ -40,22 +40,22 @@ jobs:
   #       env:
   #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-  removing-ip-from-aws:
-    name: Removing IP address
-    runs-on: self-hosted
-    needs: ["adding-ip-to-aws-sg"]
-    if: always()
-    steps:
+  # removing-ip-from-aws:
+  #   name: Removing IP address
+  #   runs-on: self-hosted
+  #   needs: ["adding-ip-to-aws-sg"]
+  #   if: always()
+  #   steps:
       # - name: view output
       #   run: echo ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}
-      - name: Remove Github Actions IP from security group
-        run: |
-          aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}/32
-          aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol tcp --port 9000 --cidr ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}/32
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
+      # - name: Remove Github Actions IP from security group
+      #   run: |
+      #     aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol all --cidr ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}/32
+      #     aws ec2 revoke-security-group-ingress --group-id sg-028818adb2c6e4a5c --protocol tcp --port 9000 --cidr ${{ needs.adding-ip-to-aws-sg.outputs.output1 }}/32
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     AWS_DEFAULT_REGION: us-east-1
       # If you wish to fail your job when the Quality Gate is red, uncomment the
       # following lines. This would typically be used to fail a deployment.
       # - uses: sonarsource/sonarqube-quality-gate-action@master
