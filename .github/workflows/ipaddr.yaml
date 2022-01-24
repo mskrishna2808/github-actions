@@ -1,6 +1,6 @@
 name: Getting IP info
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   Getting-IP-Info:
