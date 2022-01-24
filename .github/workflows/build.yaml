@@ -1,12 +1,12 @@
 name: Sonarqube Build
 on:
-  pull_request:
+  push:
     branches:
       - master # or the name of your main branch
 jobs:
   adding-ip-to-aws-sg:
     name: Adding IP address
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Get Github action IP
         id: ip
@@ -42,7 +42,7 @@ jobs:
   #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
   removing-ip-from-aws:
     name: Removing IP address
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: ["adding-ip-to-aws-sg"]
     if: always()
     steps:
