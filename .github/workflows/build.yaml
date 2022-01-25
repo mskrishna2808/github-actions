@@ -24,6 +24,7 @@ jobs:
           fetch-depth: 0
       - name: running sonar scanner
         run: |
+          bash /home/ec2-user/script.sh
           sonar-scanner Dsonar.projectKey=runner Dsonar.sources=. Dsonar.host.url=http://3.91.37.11:9000 Dsonar.login=3c8f3ab7f18dc1ee123cd99451acb872720c9a30
         
     #   - uses: sonarsource/sonarqube-scan-action@master
