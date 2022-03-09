@@ -1,0 +1,17 @@
+name: Accessing s3 using roles
+
+on: [push]
+
+jobs:
+  Accessing-s3-info:
+    name: Testing s3 bucket access
+    runs-on: self-hosted
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::393448835996:role/s3_role_testing
+          aws-region: us-east-1
+      - name: Getting s3 bucket List
+        run: aws s3 ls
+
