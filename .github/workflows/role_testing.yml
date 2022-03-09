@@ -12,6 +12,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::393448835996:role/s3_role_testing
           aws-region: us-east-1
-      - name: Getting s3 bucket List
         run: aws s3 ls
+      # - name: Getting s3 bucket List
+      #   run: aws s3 ls
 
