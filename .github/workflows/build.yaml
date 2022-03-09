@@ -1,8 +1,7 @@
 name: Sonarqube Build
-on:
-  push:
-    branches:
-      - master # or the name of your main branch
+
+on: [pull_request]
+
 jobs:
   adding-ip-to-aws-sg:
     name: Adding IP address & testing self hosted runner
