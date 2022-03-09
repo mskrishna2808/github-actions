@@ -10,7 +10,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::393448835996:role/s3_role_testing
+          role-to-assume: s3_role_testing
           aws-region: us-east-1
 
       - name: Getting s3 bucket List
