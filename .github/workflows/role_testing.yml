@@ -18,6 +18,8 @@ jobs:
         run: aws s3 ls
   Listing-s3-bucket:
     name: Listing s3 bukcet Accessing-s3-info
+    needs: Accessing-s3-info
+    if: ${{ always() }}
     runs-on: self-hosted
     steps:
       - name: Listing s3 bucket info
