@@ -16,4 +16,9 @@ jobs:
 
       - name: Getting s3 bucket List
         run: aws s3 ls
-
+  Listing-s3-bucket:
+    name: Listing s3 bukcet Accessing-s3-info
+    runs-on: self-hosted
+    steps:
+      - name: Listing s3 bucket info
+        run: aws s3 ls
