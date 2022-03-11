@@ -22,5 +22,12 @@ jobs:
     if: ${{ always() }}
     runs-on: self-hosted
     steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: s3_role_testing
+          role-duration-seconds: 1200
+          aws-region: us-east-1
+          
       - name: Listing s3 bucket info
         run: aws s3 ls
