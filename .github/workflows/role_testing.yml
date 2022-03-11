@@ -17,7 +17,7 @@ jobs:
       - name: Getting s3 bucket List
         run: aws s3 ls
   Listing-s3-bucket:
-    name: Listing s3 bukcet Accessing-s3-info
+    name: Listing s3 bukcet
     needs: Accessing-s3-info
     if: ${{ always() }}
     runs-on: self-hosted
@@ -31,3 +31,4 @@ jobs:
           
       - name: Listing s3 bucket info
         run: aws s3 ls
+
