@@ -1,9 +1,9 @@
-name : Appending date to file name
+name : Pushing docker image to ECR
 
 on: [push]
 
 jobs:
-  appending-date:
+  aws-ecr-image:
     runs-on: self-hosted
     defaults:
         run:
@@ -24,5 +24,5 @@ jobs:
             REPOSITORY: nginx
             IMAGE_TAG: ${{ steps.date.outputs.DATE }}
           run: |
-            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .infra/nodejs/dev/Dockerfile
+            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .infra/nginx/dev/Dockerfile
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
