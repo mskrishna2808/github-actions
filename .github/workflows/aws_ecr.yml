@@ -27,9 +27,6 @@ jobs:
             REPOSITORY: nginx
             IMAGE_TAG: v_${{ steps.date.outputs.DATE }}
           run: |
-            pwd
-            ls -la
-            echo "==================================================="
-            ls -la /home/ec2-user/actions-runner/_work/github-actions
-            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .infra/nginx/dev/
+            cp .infra/nginx/dev/Dockerfile .
+            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
