@@ -26,5 +26,7 @@ jobs:
           run: |
             pwd
             ls -la
+            echo "==================================================="
+            ls -la /home/ec2-user/actions-runner/_work/github-actions
             docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG /home/ec2-user/actions-runner/_work/github-actions/github-actions/.infra/nginx/dev/
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
