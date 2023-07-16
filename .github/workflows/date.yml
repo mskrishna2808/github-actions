@@ -17,7 +17,7 @@ jobs:
       - name: Creating file with date
         id: file_creation
         run: |
-            touch file_${{ steps.date.output.DATE }}
+            touch file_${{ steps.date.outputs.DATE }}
 
       - name: long listing files
         run: ls -l
