@@ -1,19 +1,19 @@
-name : Testing IP's
+# name : Testing IP's
 
-on: [push]
+# on: [push]
 
-jobs:
-  testing-ip-address:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Getting IP of a linux machine
-        run: |
-          echo $(curl ident.me) > output.txt
-      - name: assigning IP
-        id: ip
-        run: echo "::set-output name=version::$(cat output.txt)"
-      # - name: Get Github action IP
-      #   id: ip
-      #   uses: haythem/public-ip@v1.2
-      - name: View output using reference
-        run: echo ${{ steps.ip.outputs.version }}
+# jobs:
+#   testing-ip-address:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Getting IP of a linux machine
+#         run: |
+#           echo $(curl ident.me) > output.txt
+#       - name: assigning IP
+#         id: ip
+#         run: echo "::set-output name=version::$(cat output.txt)"
+#       # - name: Get Github action IP
+#       #   id: ip
+#       #   uses: haythem/public-ip@v1.2
+#       - name: View output using reference
+#         run: echo ${{ steps.ip.outputs.version }}

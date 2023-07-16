@@ -1,0 +1,23 @@
+name : Appending date to file name
+
+on: [push]
+
+jobs:
+  appending-date:
+    runs-on: ubuntu-latest
+    defaults:
+        run:
+            shell: bash
+    steps:
+      - name: Assigning date to a variable
+        id: date
+        run: |
+          echo "DATE=$(date +%d%m%y_%H%M%S)" >> $GITHUB_OUTPUT
+
+      - name: Creating file with date
+        id: file_creation
+        run: |
+            touch file_${{ steps.date.output.DATE }}
+
+      - name: long listing files
+        run: ls -l
