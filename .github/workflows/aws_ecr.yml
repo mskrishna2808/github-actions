@@ -31,5 +31,5 @@ jobs:
             ls -la
             echo "==================================================="
             ls -la /home/ec2-user/actions-runner/_work/github-actions
-            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG ../../.infra/nginx/dev/
+            docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .infra/nginx/dev/
             docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
