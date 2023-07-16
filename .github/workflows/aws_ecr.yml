@@ -25,7 +25,7 @@ jobs:
           env:
             REGISTRY: ${{ steps.login-ecr.outputs.registry }}
             REPOSITORY: nginx
-            IMAGE_TAG: ${{ steps.date.outputs.DATE }}
+            IMAGE_TAG: v_${{ steps.date.outputs.DATE }}
           run: |
             pwd
             ls -la
